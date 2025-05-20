@@ -1,1 +1,1025 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turan Light | Premium Fashion</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Variables */
+    :root {
+      --black: #111;
+      --gray: #333;
+      --light: #eee;
+      --gold: #d4af37;
+      --white: #fff;
+      --red: #e74c3c;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    /* Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      background: var(--black);
+      color: var(--light);
+      line-height: 1.6;
+      padding-top: 80px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--black);
+      border-radius: 0 0 50px 50px;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      transition: var(--transition);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    header.scrolled {
+      padding: 0.5rem 1.5rem;
+      border-radius: 0 0 25px 25px;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--white);
+      transition: var(--transition);
+    }
+
+    header.scrolled .logo {
+      font-size: 1.4rem;
+    }
+
+    .logo span {
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    /* Header Actions */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .action-icon {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--gray);
+      color: var(--light);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .action-icon:hover {
+      background: var(--gold);
+      color: var(--black);
+      transform: translateY(-3px);
+    }
+
+    .notification-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: var(--red);
+      color: var(--white);
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    /* Floating Navigation */
+    .floating-nav {
+      position: fixed;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 900;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .nav-item {
+      position: relative;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--gray);
+      color: var(--light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .nav-item:hover {
+      background: var(--gold);
+      color: var(--black);
+      transform: scale(1.1) translateY(-5px);
+    }
+
+    .nav-item:hover .nav-label {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .nav-label {
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateX(-20px) translateY(-50%);
+      background: var(--gray);
+      color: var(--light);
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+      z-index: -1;
+    }
+
+    /* Floating Profile */
+    .floating-profile {
+      position: fixed;
+      right: 20px;
+      top: 100px;
+      z-index: 900;
+    }
+
+    .profile-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      animation: bounce 2s infinite;
+    }
+
+    .profile-icon:hover {
+      transform: scale(1.1) translateY(-5px);
+    }
+
+    /* Products */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .product {
+      background: var(--gray);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .product:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .product-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 1.5rem;
+    }
+
+    .product-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-price {
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .action-btn {
+      flex: 1;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .add-to-cart {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    .add-to-cart:hover {
+      background: #c9a227;
+    }
+
+    .bookmark {
+      background: transparent;
+      color: var(--light);
+      border: 1px solid var(--light);
+    }
+
+    .bookmark:hover {
+      background: var(--light);
+      color: var(--black);
+    }
+
+    /* Trust Section */
+    .trust-section {
+      background: var(--gray);
+      padding: 3rem 0;
+      margin: 3rem 0;
+      text-align: center;
+    }
+
+    .trust-stats {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin: 1rem 0;
+    }
+
+    /* Marquee */
+    .marquee {
+      display: flex;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 1.5rem 0;
+      background: var(--black);
+    }
+
+    .marquee-content {
+      display: inline-flex;
+      animation: marquee 20s linear infinite;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .marquee-item {
+      margin: 0 2rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .marquee-item img {
+      height: 40px;
+      filter: brightness(0) invert(1);
+      opacity: 0.7;
+      transition: var(--transition);
+    }
+
+    .marquee-item:hover img {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    /* Video Section */
+    .video-section {
+      margin: 3rem 0;
+      text-align: center;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Payment Section */
+    .payment-section {
+      background: var(--gray);
+      padding: 2rem;
+      border-radius: 12px;
+      margin: 3rem 0;
+    }
+
+    .payment-methods {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .payment-method {
+      width: 60px;
+      height: 40px;
+      background: var(--white);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--gray);
+      padding: 2rem 0;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .footer-date {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+    }
+
+    .modal.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-content {
+      background: var(--gray);
+      border-radius: 12px;
+      width: 90%;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: var(--light);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .floating-nav {
+        left: 10px;
+      }
+      
+      .nav-item {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+      }
+      
+      .products {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      }
+      
+      .product-img {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .floating-nav {
+        display: none;
+      }
+      
+      .products {
+        grid-template-columns: 1fr;
+      }
+      
+      .product-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header id="main-header">
+    <div class="container header-container">
+      <a href="#" class="logo">turan<span>light</span></a>
+      
+      <div class="header-actions">
+        <div class="action-icon">
+          <i class="fas fa-bell"></i>
+          <span class="notification-badge">3</span>
+        </div>
+        <div class="action-icon">
+          <i class="fas fa-cog"></i>
+        </div>
+        <div class="action-icon">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="notification-badge">2</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Floating Navigation -->
+  <div class="floating-nav">
+    <div class="nav-item" data-page="home">
+      <i class="fas fa-home"></i>
+      <span class="nav-label">Home</span>
+    </div>
+    <div class="nav-item" data-page="products">
+      <i class="fas fa-shopping-bag"></i>
+      <span class="nav-label">Products</span>
+    </div>
+    <div class="nav-item" data-page="marketplace">
+      <i class="fas fa-store"></i>
+      <span class="nav-label">Marketplace</span>
+    </div>
+    <div class="nav-item" data-page="blog">
+      <i class="fas fa-blog"></i>
+      <span class="nav-label">Blog</span>
+    </div>
+    <div class="nav-item" data-page="contact">
+      <i class="fas fa-envelope"></i>
+      <span class="nav-label">Contact</span>
+    </div>
+    <div class="nav-item" data-page="booking">
+      <i class="fas fa-calendar-alt"></i>
+      <span class="nav-label">Booking</span>
+    </div>
+  </div>
+
+  <!-- Floating Profile -->
+  <div class="floating-profile">
+    <div class="profile-icon" id="profile-icon">
+      <i class="fas fa-user"></i>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Products -->
+    <section>
+      <h2 class="section-title">Featured Collections</h2>
+      <div class="products" id="products">
+        <!-- Products will load here -->
+      </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+      <h3>Trusted by Fashion Enthusiasts Worldwide</h3>
+      <div class="trust-stats" id="client-counter">0</div>
+      <p>Happy clients and counting</p>
+    </section>
+
+    <!-- Partners Marquee -->
+    <div class="marquee">
+      <div class="marquee-content">
+        <div class="marquee-item">
+          <img src="https://via.placeholder.com/150x50?text=GUCCI" alt="Gucci">
+        </div>
+        <div class="marquee-item">
+          <img src="https://via.placeholder.com/150x50?text=PRADA" alt="Prada">
+        </div>
+        <div class="marquee-item">
+          <img src="https://via.placeholder.com/150x50?text=LV" alt="Louis Vuitton">
+        </div>
+        <div class="marquee-item">
+          <img src="https://via.placeholder.com/150x50?text=CHANEL" alt="Chanel">
+        </div>
+        <div class="marquee-item">
+          <img src="https://via.placeholder.com/150x50?text=HERMES" alt="Hermes">
+        </div>
+        <div class="marquee-item">
+          <img src="https://via.placeholder.com/150x50?text=BALENCIAGA" alt="Balenciaga">
+        </div>
+        <div class="marquee-item">
+          <img src="https://via.placeholder.com/150x50?text=VERSACE" alt="Versace">
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Section -->
+    <section class="video-section">
+      <h3>Our Fashion Story</h3>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/9No-FiEInLA?autoplay=1&mute=1&loop=1&playlist=9No-FiEInLA" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- More Products -->
+    <section>
+      <h2 class="section-title">New Arrivals</h2>
+      <div class="products" id="new-products">
+        <!-- New products will load here -->
+      </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section class="payment-section">
+      <h3>Secure Payment Options</h3>
+      <p>We accept all major payment methods</p>
+      <div class="payment-methods">
+        <div class="payment-method">
+          <i class="fab fa-cc-visa"></i>
+        </div>
+        <div class="payment-method">
+          <i class="fab fa-cc-mastercard"></i>
+        </div>
+        <div class="payment-method">
+          <i class="fab fa-cc-amex"></i>
+        </div>
+        <div class="payment-method">
+          <i class="fab fa-cc-paypal"></i>
+        </div>
+        <div class="payment-method">
+          <i class="fab fa-cc-apple-pay"></i>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p class="footer-date">© 2025 Turan Light. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Product Modal -->
+  <div class="modal" id="product-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">&times;</button>
+      <div class="modal-body">
+        <img src="" alt="" id="modal-img" class="product-img">
+        
+        <div>
+          <h3 id="modal-title">Product Name</h3>
+          <p class="product-price" id="modal-price">€0.00</p>
+          <p id="modal-desc">Product description</p>
+          
+          <div class="product-actions">
+            <button class="action-btn add-to-cart">
+              <i class="fas fa-shopping-cart"></i> Add to Cart
+            </button>
+            <button class="action-btn bookmark">
+              <i class="far fa-bookmark"></i> Save
+            </button>
+          </div>
+          
+          <div class="related-products">
+            <h4>You May Also Like</h4>
+            <div class="products" id="related-products">
+              <!-- Related products will load here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Auth Modal -->
+  <div class="modal" id="auth-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="auth-close">&times;</button>
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Login</button>
+        <button class="auth-tab" data-tab="register">Register</button>
+      </div>
+      
+      <div class="auth-content" id="login-form">
+        <form>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="Enter your email">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" placeholder="Enter your password">
+          </div>
+          <button type="submit" class="btn-gold">Login</button>
+        </form>
+      </div>
+      
+      <div class="auth-content" id="register-form" style="display: none;">
+        <form>
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="Enter your full name">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="Enter your email">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" placeholder="Create a password">
+          </div>
+          <button type="submit" class="btn-gold">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Products data
+    const products = [
+      {
+        id: 1,
+        title: 'Message Rocket Bag',
+        price: '€75.00',
+        image: 'https://storage.googleapis.com/a1aa/image/c0a07a39-b825-40fd-9bcd-2cc37c98a5eb.jpg',
+        desc: 'Stylish black jacket style backpack perfect for urban adventures.',
+        related: [2, 3, 6]
+      },
+      {
+        id: 2,
+        title: 'Printed Cotton Bag',
+        price: '€160.00',
+        image: 'https://storage.googleapis.com/a1aa/image/427a45e2-76c9-4f11-962d-c3312d9698b2.jpg',
+        desc: 'Eco-friendly cotton bag with unique prints.',
+        related: [1, 4, 5]
+      },
+      {
+        id: 3,
+        title: 'Pastel Bodyform Bag',
+        price: '€85.00',
+        image: 'https://storage.googleapis.com/a1aa/image/8440a146-b707-4a3b-7a46-1e6ea21aa4c9.jpg',
+        desc: 'Soft pastel backpack with ergonomic design.',
+        related: [1, 6, 8]
+      },
+      {
+        id: 4,
+        title: 'Victoria Secret Bags',
+        price: '€85.00',
+        image: 'https://storage.googleapis.com/a1aa/image/114c7573-d6f6-4f0d-843b-dcbf3b497713.jpg',
+        desc: 'Elegant and sophisticated bag with matching watch.',
+        related: [2, 5, 7]
+      },
+      {
+        id: 5,
+        title: 'New Style Bag',
+        price: '€75.00',
+        image: 'https://storage.googleapis.com/a1aa/image/834e0e48-a707-4d2c-be7f-46083da65c22.jpg',
+        desc: 'Trendy blue backpack with multiple compartments.',
+        related: [2, 4, 6]
+      },
+      {
+        id: 6,
+        title: 'Vincent Bag',
+        price: '€55.00',
+        image: 'https://storage.googleapis.com/a1aa/image/6aa78094-1673-4033-2ff7-44195c754ace.jpg',
+        desc: 'Classic black leather bag with timeless design.',
+        related: [1, 3, 5]
+      },
+      {
+        id: 7,
+        title: 'Luxury Leather Backpack',
+        price: '€120.00',
+        image: 'https://storage.googleapis.com/a1aa/image/29b985c0-6dab-47d7-5a23-68f9bf8af285.jpg',
+        desc: 'Premium leather backpack with antique brass hardware.',
+        related: [4, 8, 9]
+      },
+      {
+        id: 8,
+        title: 'Modern Women Bag',
+        price: '€70.00',
+        image: 'https://storage.googleapis.com/a1aa/image/bb9d932d-ad77-451d-adde-29ce23dd068a.jpg',
+        desc: 'Designed for the modern woman with inspirational text.',
+        related: [3, 7, 9]
+      },
+      {
+        id: 9,
+        title: 'Structured Striped Bags',
+        price: '€75.00',
+        image: 'https://storage.googleapis.com/a1aa/image/4130213a-90d7-4548-501b-8f1a3a4efcff.jpg',
+        desc: 'Structured striped bags combining fashion with functionality.',
+        related: [7, 8, 10]
+      },
+      {
+        id: 10,
+        title: 'Cotton Flower Bag',
+        price: '€35.00',
+        image: 'https://storage.googleapis.com/a1aa/image/7b9375bb-64f0-4af7-b5b8-a6f6cf03b4f2.jpg',
+        desc: 'Floral patterned cotton bag perfect for spring and summer.',
+        related: [6, 9, 11]
+      },
+      {
+        id: 11,
+        title: 'Designer Travel Bag',
+        price: '€95.00',
+        image: 'https://storage.googleapis.com/a1aa/image/5ca514fd-c337-41b0-0fef-7fdff2700c28.jpg',
+        desc: 'Spacious travel bag with multiple compartments.',
+        related: [5, 10, 12]
+      },
+      {
+        id: 12,
+        title: 'Executive Briefcase',
+        price: '€110.00',
+        image: 'https://storage.googleapis.com/a1aa/image/ddcd2d84-b07e-45e2-b124-d31c064aed90.jpg',
+        desc: 'Professional briefcase for the modern executive.',
+        related: [6, 9, 11]
+      }
+    ];
+
+    // DOM elements
+    const productsEl = document.getElementById('products');
+    const newProductsEl = document.getElementById('new-products');
+    const productModal = document.getElementById('product-modal');
+    const modalClose = document.getElementById('modal-close');
+    const modalImg = document.getElementById('modal-img');
+    const modalTitle = document.getElementById('modal-title');
+    const modalPrice = document.getElementById('modal-price');
+    const modalDesc = document.getElementById('modal-desc');
+    const relatedProductsEl = document.getElementById('related-products');
+    const authModal = document.getElementById('auth-modal');
+    const authClose = document.getElementById('auth-close');
+    const profileIcon = document.getElementById('profile-icon');
+    const authTabs = document.querySelectorAll('.auth-tab');
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const clientCounter = document.getElementById('client-counter');
+    const mainHeader = document.getElementById('main-header');
+
+    // Load products
+    function loadProducts() {
+      // Featured products (first 6)
+      productsEl.innerHTML = products.slice(0, 6).map(product => `
+        <div class="product" data-id="${product.id}">
+          <img src="${product.image}" alt="${product.title}" class="product-img">
+          <div class="product-info">
+            <h3 class="product-title">${product.title}</h3>
+            <p class="product-price">${product.price}</p>
+            <div class="product-actions">
+              <button class="action-btn add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+              <button class="action-btn bookmark">
+                <i class="far fa-bookmark"></i> Save
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      // New products (last 6)
+      newProductsEl.innerHTML = products.slice(-6).map(product => `
+        <div class="product" data-id="${product.id}">
+          <img src="${product.image}" alt="${product.title}" class="product-img">
+          <div class="product-info">
+            <h3 class="product-title">${product.title}</h3>
+            <p class="product-price">${product.price}</p>
+            <div class="product-actions">
+              <button class="action-btn add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+              <button class="action-btn bookmark">
+                <i class="far fa-bookmark"></i> Save
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Open product modal
+    function openProductModal(product) {
+      modalImg.src = product.image;
+      modalImg.alt = product.title;
+      modalTitle.textContent = product.title;
+      modalPrice.textContent = product.price;
+      modalDesc.textContent = product.desc;
+      
+      // Load related products
+      const relatedProducts = products.filter(p => product.related.includes(p.id));
+      relatedProductsEl.innerHTML = relatedProducts.map(prod => `
+        <div class="product" data-id="${prod.id}">
+          <img src="${prod.image}" alt="${prod.title}" class="product-img">
+          <div class="product-info">
+            <h3 class="product-title">${prod.title}</h3>
+            <p class="product-price">${prod.price}</p>
+          </div>
+        </div>
+      `).join('');
+      
+      productModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close modal
+    function closeModal() {
+      productModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Open auth modal
+    function openAuthModal() {
+      authModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close auth modal
+    function closeAuthModal() {
+      authModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Switch auth tabs
+    function switchAuthTab(tab) {
+      authTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      
+      if (tab.dataset.tab === 'login') {
+        loginForm.style.display = 'block';
+        registerForm.style.display = 'none';
+      } else {
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'block';
+      }
+    }
+
+    // Animate counter
+    function animateCounter() {
+      let count = 0;
+      const target = 2000000;
+      const increment = target / 100;
+      
+      const timer = setInterval(() => {
+        count += increment;
+        clientCounter.textContent = Math.floor(count).toLocaleString() + '+';
+        
+        if (count >= target) {
+          clearInterval(timer);
+          clientCounter.textContent = target.toLocaleString() + '+';
+        }
+      }, 20);
+    }
+
+    // Handle scroll
+    function handleScroll() {
+      if (window.scrollY > 50) {
+        mainHeader.classList.add('scrolled');
+      } else {
+        mainHeader.classList.remove('scrolled');
+      }
+    }
+
+    // Event listeners
+    productsEl.addEventListener('click', (e) => {
+      const productEl = e.target.closest('.product');
+      const btn = e.target.closest('.action-btn');
+      
+      if (btn) {
+        e.stopPropagation();
+        if (btn.classList.contains('add-to-cart')) {
+          alert('Added to cart!');
+        } else if (btn.classList.contains('bookmark')) {
+          btn.innerHTML = `<i class="fas fa-bookmark"></i> Saved`;
+        }
+        return;
+      }
+      
+      if (productEl) {
+        const productId = parseInt(productEl.dataset.id);
+        const product = products.find(p => p.id === productId);
+        if (product) openProductModal(product);
+      }
+    });
+
+    newProductsEl.addEventListener('click', (e) => {
+      const productEl = e.target.closest('.product');
+      if (productEl) {
+        const productId = parseInt(productEl.dataset.id);
+        const product = products.find(p => p.id === productId);
+        if (product) openProductModal(product);
+      }
+    });
+
+    relatedProductsEl.addEventListener('click', (e) => {
+      const productEl = e.target.closest('.product');
+      if (productEl) {
+        const productId = parseInt(productEl.dataset.id);
+        const product = products.find(p => p.id === productId);
+        if (product) openProductModal(product);
+      }
+    });
+
+    modalClose.addEventListener('click', closeModal);
+    authClose.addEventListener('click', closeAuthModal);
+    profileIcon.addEventListener('click', openAuthModal);
+
+    authTabs.forEach(tab => {
+      tab.addEventListener('click', () => switchAuthTab(tab));
+    });
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProducts();
+      animateCounter();
+    });
+  </script>
+</body>
+</html>
